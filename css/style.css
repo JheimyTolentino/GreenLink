@@ -1,0 +1,139 @@
+   :root {
+       --primary-green: #2ecc71;
+       --secondary-green: #27ae60;
+       --dark-green: #16a085;
+       --light-gray: #f8f9fa;
+   }
+
+   body {
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       background-color: var(--light-gray);
+   }
+
+   .navbar {
+       background-color: white;
+       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   }
+
+   .navbar-brand {
+       font-weight: 700;
+       color: var(--dark-green) !important;
+   }
+
+   .btn-green {
+       background-color: var(--primary-green);
+       color: white;
+       border: none;
+   }
+
+   .btn-green:hover {
+       background-color: var(--secondary-green);
+       color: white;
+   }
+
+   .hero-section {
+       background: linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(22, 160, 133, 0.9));
+       color: white;
+       padding: 5rem 0;
+       margin-bottom: 3rem;
+   }
+
+   .feature-icon {
+       font-size: 2.5rem;
+       color: var(--primary-green);
+       margin-bottom: 1rem;
+   }
+
+   .feature-card {
+       transition: transform 0.3s;
+       border: none;
+       border-radius: 10px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       cursor:pointer;
+   }
+
+   .feature-card:hover {
+       transform: translateY(-5px);
+   }
+
+   .map-container {
+       height: 400px;
+       border-radius: 10px;
+       overflow: hidden;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+
+   footer {
+       background-color: #343a40;
+       color: white;
+       padding: 3rem 0;
+       margin-top: 3rem;
+   }
+
+   .recycling-stats {
+       background-color: white;
+       border-radius: 10px;
+       padding: 2rem;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+
+   .stat-number {
+       font-size: 2.5rem;
+       font-weight: 700;
+       color: var(--primary-green);
+   }
+
+   .material-badge {
+       display: inline-block;
+       padding: 0.35em 0.65em;
+       font-size: 0.75em;
+       font-weight: 700;
+       line-height: 1;
+       color: #fff;
+       text-align: center;
+       white-space: nowrap;
+       vertical-align: baseline;
+       border-radius: 0.25rem;
+   }
+
+   .badge-plastic {
+       background-color: #e67e22;
+   }
+
+   .badge-paper {
+       background-color: #3498db;
+   }
+
+   .badge-glass {
+       background-color: #16a085;
+   }
+
+   .badge-metal {
+       background-color: #7f8c8d;
+   }
+
+   .badge-ewaste {
+       background-color: #9b59b6;
+   }
+
+   .navbar-nav .nav-item {
+       display: flex;
+       align-items: center;
+   }
+
+   @media (max-width: 991.98px) {
+       .navbar-nav .nav-item.ms-lg-3 {
+           margin-left: 0 !important;
+           padding: 0.5rem 1rem;
+       }
+   }
+
+   /* Estilos para el mapa de Leaflet */
+   .leaflet-popup-content h6 {
+       font-weight: bold;
+       margin-bottom: 0.5rem;
+   }
+
+   .leaflet-popup-content p {
+       margin-bottom: 0.5rem;
+   }

@@ -1,17 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // ====================== MAPA INTERACTIVO ======================
-    // Coordenadas de San Ramón
     const sanRamonCoords = [-33.5345, -70.6206];
-
-    // Inicializar mapa
+    // cords
     const map = L.map('map').setView(sanRamonCoords, 14);
-
-    // Añadir capa de OpenStreetMap
+    // mapa
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    // Icono personalizado para los marcadores
+    // Icono de los Puntos de reciclaje
     const recyclingIcon = L.icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/3063/3063187.png',
         iconSize: [32, 32],
@@ -19,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         popupAnchor: [0, -32]
     });
 
-    // Datos de ejemplo (en un proyecto real, estos vendrían de una API o base de datos)
+    // Datos de ejemplo
     const recyclingPoints = [
         {
             id: 1,
@@ -213,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // SCROLL SUAVE 
+    // zoom
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -227,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // GEOLOCALIZACIÓN 
+    // Localización
     if (navigator.geolocation) {
         const geoBtn = document.createElement('button');
         geoBtn.className = 'btn btn-outline-primary btn-sm ms-2';

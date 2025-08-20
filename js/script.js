@@ -120,7 +120,43 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // CORRECCIÓN: Los valores de los filtros ahora coinciden exactamente con los nombres de materiales
+    // Función para mostrar notificaciones toast
+    function showToast(message, type = 'success') {
+        const toastContainer = document.querySelector('.toast-container');
+        const toastId = 'toast-' + Date.now();
+
+        const toastEl = document.createElement('div');
+        toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+        toastEl.setAttribute('role', 'alert');
+        toastEl.setAttribute('aria-live', 'assertive');
+        toastEl.setAttribute('aria-atomic', 'true');
+        toastEl.id = toastId;
+
+        toastEl.innerHTML = `
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                `;
+
+        toastContainer.appendChild(toastEl);
+
+        const toast = new bootstrap.Toast(toastEl, {
+            autohide: true,
+            delay: 5000
+        });
+
+        toast.show();
+
+        // Eliminar el toast del DOM después de que se oculte
+        toastEl.addEventListener('hidden.bs.toast', function () {
+            toastEl.remove();
+        });
+    }
+
+    // Configuración de los filtros
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.filter-btn').forEach(b =>
@@ -132,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (filter === 'all') {
                     marker.addTo(map);
                 } else {
-                    // Comprobamos si el punto incluye el material del filtro
                     if (marker.pointData.materials.includes(filter)) {
                         marker.addTo(map);
                     } else {
@@ -141,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // También filtramos la lista lateral
             filterLocationList();
         });
     });
@@ -157,7 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // También filtramos la lista lateral
         filterLocationList();
     });
 
@@ -170,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function () {
         nearbyList.innerHTML = '';
 
         recyclingPoints.forEach(point => {
-            // Comprobar si el punto pasa los filtros
             const passesMaterialFilter = materialFilter === 'all' || point.materials.includes(materialFilter);
             const passesComunaFilter = comunaFilter === 'all' || point.comuna === comunaFilter;
 
@@ -200,8 +232,58 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Manejar el envío de formularios
+    document.getElementById('addLocationForm').addEventListener('submit', function (e) {
+        const submitBtn = document.getElementById('submitLocationBtn');
+        const submitBtnText = document.getElementById('submitBtnText');
+        const submitSpinner = document.getElementById('submitSpinner');
+
+        submitBtn.disabled = true;
+        submitBtnText.classList.add('d-none');
+        submitSpinner.classList.remove('d-none');
+
+        // Aquí se enviará el formulario a FormSubmit automáticamente
+        // Mostramos mensaje de éxito después de un breve retraso
+        setTimeout(() => {
+            showToast('¡Punto registrado con éxito! Te contactaremos pronto.', 'success');
+
+            // Ocultar el modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addLocationModal'));
+            modal.hide();
+
+            // Mostrar sección de agradecimiento
+            document.getElementById('gracias').style.display = 'block';
+            document.getElementById('gracias').scrollIntoView({ behavior: 'smooth' });
+
+            // Restaurar botón
+            submitBtn.disabled = false;
+            submitBtnText.classList.remove('d-none');
+            submitSpinner.classList.add('d-none');
+        }, 2000);
+    });
+
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+        showToast('¡Registro exitoso! Bienvenido a GreenLink.', 'success');
+    });
+
+    // Botón de geolocalización
+    document.getElementById('geo-btn').addEventListener('click', () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                map.setView([position.coords.latitude, position.coords.longitude], 15);
+                showToast('Ubicación centrada en tu posición actual', 'info');
+            }, () => {
+                showToast('No se pudo obtener tu ubicación. Asegúrate de haber permitido el acceso.', 'danger');
+            });
+        } else {
+            showToast('Tu navegador no soporta geolocalización.', 'danger');
+        }
+    });
+
+    // Cargar lista de puntos cercanos
     loadNearbyLocations();
 
+    // Animación de estadísticas
     function animateValue(id, start, end, duration) {
         const obj = document.getElementById(id);
         let startTimestamp = null;
@@ -232,24 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     observer.observe(document.getElementById('estadisticas'));
 
-    document.getElementById('registrationForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('¡Gracias por registrarte en GreenLink! Te hemos enviado un correo de confirmación.');
-        this.reset();
-    });
-
-    document.getElementById('submitLocationBtn').addEventListener('click', function () {
-        const form = document.getElementById('addLocationForm');
-        if (form.checkValidity()) {
-            alert('¡Gracias por contribuir! Tu punto de reciclaje será revisado y publicado pronto.');
-            const modal = bootstrap.Modal.getInstance(document.getElementById('addLocationModal'));
-            modal.hide();
-            form.reset();
-        } else {
-            form.reportValidity();
-        }
-    });
-
+    // Scroll suave para enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -261,18 +326,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
         });
-    });
-
-    // Botón de geolocalización
-    document.getElementById('geo-btn').addEventListener('click', () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                map.setView([position.coords.latitude, position.coords.longitude], 15);
-            }, () => {
-                alert('No se pudo obtener tu ubicación. Asegúrate de haber permitido el acceso.');
-            });
-        } else {
-            alert('Tu navegador no soporta geolocalización.');
-        }
     });
 });

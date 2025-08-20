@@ -50,6 +50,9 @@
         </div>
     </nav>
 
+    <!-- Toast Container para notificaciones -->
+    <div class="toast-container"></div>
+
     <!-- Sección Principal -->
     <section class="mega-section">
         <div class="container">
@@ -60,7 +63,8 @@
                         fomentar un entorno más limpio y sostenible.</p>
                     <div class="d-flex gap-3">
                         <a href="#mapa" class="btn btn-light btn-lg">Ver Mapa</a>
-                        <a href="#registro" class="btn btn-outline-light btn-lg">Registrar Punto</a>
+                        <a href="#" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                            data-bs-target="#addLocationModal">Registrar Punto</a>
                     </div>
                 </div>
                 <div class="col-lg-6 d-none d-lg-block">
@@ -111,9 +115,7 @@
             <div class="col-lg-8">
                 <h2 class="mb-4">Mapa de Puntos de Reciclaje</h2>
                 <div class="map-container mb-4 position-relative" id="map">
-                    <!-- Mapa se cargará aquí con Leaflet -->
-                    <button id="geo-btn" class="btn btn-outline-primary btn-sm"
-                        style="position: absolute; bottom: 15px; right: 15px; z-index: 1000;">
+                    <button id="geo-btn" class="btn btn-outline-primary btn-sm">
                         <i class="fas fa-location-arrow me-1"></i>Mi ubicación
                     </button>
                 </div>
@@ -266,23 +268,27 @@
                         <h2 class="text-center mb-4">Únete a GreenLink</h2>
                         <p class="text-center mb-4">Regístrate para guardar tus puntos favoritos, agregar nuevos centros
                             de reciclaje y recibir actualizaciones.</p>
-                        <form id="registrationForm">
+                        <form id="registrationForm" action="https://formsubmit.co/greenlink.cl@gmail.com" method="POST">
+                            <input type="hidden" name="_subject" value="Nuevo registro en GreenLink">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_next" value="https://jheimytolentino.github.io/GreenLink">
+                            <input type="hidden" name="_captcha" value="false">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="name" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="name" required>
+                                    <input type="text" class="form-control" id="name" name="name" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" required>
+                                    <input type="password" class="form-control" id="password" name="password" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="comuna" class="form-label">Comuna</label>
-                                    <select class="form-select" id="comuna" required>
+                                    <select class="form-select" id="comuna" name="comuna" required>
                                         <option value="">Selecciona tu comuna</option>
                                         <option value="san-ramon">San Ramón</option>
                                         <option value="la-pintana">La Pintana</option>
@@ -292,7 +298,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="terms" required>
+                                        <input class="form-check-input" type="checkbox" id="terms" name="terms"
+                                            required>
                                         <label class="form-check-label" for="terms">
                                             Acepto los <a href="#">términos y condiciones</a>
                                         </label>
@@ -309,7 +316,7 @@
         </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Modal para agregar nuevo punto -->
     <div class="modal fade" id="addLocationModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -318,70 +325,106 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addLocationForm">
+                    <form id="addLocationForm" action="https://formsubmit.co/greenlink.cl@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="Nuevo punto de reciclaje registrado">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://jheimytolentino.github.io/GreenLink">
+                        <input type="hidden" name="_captcha" value="false">
+
                         <div class="mb-3">
-                            <label for="locationName" class="form-label">Nombre del lugar</label>
-                            <input type="text" class="form-control" id="locationName" required>
+                            <label for="locationName" class="form-label">Nombre del lugar *</label>
+                            <input type="text" class="form-control" id="locationName" name="Nombre del lugar" required>
                         </div>
                         <div class="mb-3">
-                            <label for="locationAddress" class="form-label">Dirección</label>
-                            <input type="text" class="form-control" id="locationAddress" required>
+                            <label for="locationAddress" class="form-label">Dirección *</label>
+                            <input type="text" class="form-control" id="locationAddress" name="Dirección" required>
                         </div>
                         <div class="mb-3">
-                            <label for="locationComuna" class="form-label">Comuna</label>
-                            <select class="form-select" id="locationComuna" required>
+                            <label for="locationComuna" class="form-label">Comuna *</label>
+                            <select class="form-select" id="locationComuna" name="Comuna" required>
                                 <option value="">Selecciona una comuna</option>
                                 <option value="san-ramon">San Ramón</option>
                                 <option value="la-pintana">La Pintana</option>
                                 <option value="la-granja">La Granja</option>
                                 <option value="el-bosque">El Bosque</option>
+                                <option value="la-cisterna">La Cisterna</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Materiales aceptados</label>
+                            <label class="form-label">Materiales aceptados *</label>
                             <div class="d-flex flex-wrap gap-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="plasticCheck" value="Plástico">
+                                    <input class="form-check-input" type="checkbox" id="plasticCheck" name="Materiales"
+                                        value="Plástico">
                                     <label class="form-check-label" for="plasticCheck">Plástico</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="paperCheck" value="Papel">
+                                    <input class="form-check-input" type="checkbox" id="paperCheck" name="Materiales"
+                                        value="Papel">
                                     <label class="form-check-label" for="paperCheck">Papel</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="glassCheck" value="Vidrio">
+                                    <input class="form-check-input" type="checkbox" id="glassCheck" name="Materiales"
+                                        value="Vidrio">
                                     <label class="form-check-label" for="glassCheck">Vidrio</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="metalCheck" value="Metal">
+                                    <input class="form-check-input" type="checkbox" id="metalCheck" name="Materiales"
+                                        value="Metal">
                                     <label class="form-check-label" for="metalCheck">Metal</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="ewasteCheck"
+                                    <input class="form-check-input" type="checkbox" id="ewasteCheck" name="Materiales"
                                         value="Electrónicos">
                                     <label class="form-check-label" for="ewasteCheck">Electrónicos</label>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="locationHours" class="form-label">Horario de atención</label>
-                            <input type="text" class="form-control" id="locationHours"
-                                placeholder="Ej: Lunes a Viernes 9:00-18:00">
+                            <label for="locationHours" class="form-label">Horario de atención *</label>
+                            <input type="text" class="form-control" id="locationHours" name="Horario"
+                                placeholder="Ej: Lunes a Viernes 9:00-18:00" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">Tu correo electrónico *</label>
+                            <input type="email" class="form-control" id="userEmail" name="Correo electrónico"
+                                placeholder="Para confirmar tu registro" required>
                         </div>
                         <div class="mb-3">
                             <label for="locationPhoto" class="form-label">Foto (opcional)</label>
-                            <input type="file" class="form-control" id="locationPhoto" accept="image/*">
+                            <input type="file" class="form-control" id="locationPhoto" name="Foto" accept="image/*">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-green" id="submitLocationBtn">Enviar</button>
+                    <button type="submit" form="addLocationForm" class="btn btn-green" id="submitLocationBtn">
+                        <span id="submitBtnText">Enviar registro</span>
+                        <span id="submitSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Sección de agradecimiento (oculta inicialmente) -->
+    <section id="gracias" class="container mb-5" style="display: none;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-body p-5 text-center">
+                        <div class="feature-icon text-success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2 class="mb-4">¡Gracias por tu contribución!</h2>
+                        <p class="lead mb-4">Hemos recibido tu registro y lo revisaremos pronto. Te contactaremos a tu
+                            correo electrónico una vez que el punto haya sido verificado y añadido al mapa.</p>
+                        <a href="#mapa" class="btn btn-green btn-lg px-5">Volver al mapa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Pie de Página -->
     <footer>
         <div class="container">

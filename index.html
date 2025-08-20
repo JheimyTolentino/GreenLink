@@ -64,8 +64,8 @@
                     </div>
                 </div>
                 <div class="col-lg-6 d-none d-lg-block">
-                    <img src="images/proceso-de-reciclaje-de-papel.jpg" alt="Reciclaje"
-                        class="img-fluid rounded shadow">
+                    <img src="images/proceso-de-reciclaje-de-papel.jpg"
+                        alt="Reciclaje" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -110,24 +110,28 @@
         <div class="row">
             <div class="col-lg-8">
                 <h2 class="mb-4">Mapa de Puntos de Reciclaje</h2>
-                <div class="map-container mb-4" id="map">
+                <div class="map-container mb-4 position-relative" id="map">
                     <!-- Mapa se cargará aquí con Leaflet -->
+                    <button id="geo-btn" class="btn btn-outline-primary btn-sm"
+                        style="position: absolute; bottom: 15px; right: 15px; z-index: 1000;">
+                        <i class="fas fa-location-arrow me-1"></i>Mi ubicación
+                    </button>
                 </div>
                 <div class="d-flex flex-wrap gap-2 mb-3">
                     <button class="btn btn-outline-secondary btn-sm filter-btn active" data-filter="all">Todos</button>
-                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="plastic">
+                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="Plástico">
                         <i class="fas fa-trash-alt me-1"></i> Plástico
                     </button>
-                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="paper">
+                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="Papel">
                         <i class="fas fa-newspaper me-1"></i> Papel
                     </button>
-                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="glass">
+                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="Vidrio">
                         <i class="fas fa-wine-bottle me-1"></i> Vidrio
                     </button>
-                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="metal">
+                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="Metal">
                         <i class="fas fa-car-battery me-1"></i> Metal
                     </button>
-                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="ewaste">
+                    <button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="Electrónicos">
                         <i class="fas fa-laptop me-1"></i> Electrónicos
                     </button>
                 </div>
@@ -143,6 +147,7 @@
                                 <option value="la-pintana">La Pintana</option>
                                 <option value="la-granja">La Granja</option>
                                 <option value="el-bosque">El Bosque</option>
+                                <option value="la-cisterna">La Cisterna</option>
                             </select>
                         </div>
                         <h5 class="card-title mt-4">Puntos cercanos</h5>
@@ -165,19 +170,19 @@
         <div class="recycling-stats">
             <div class="row text-center">
                 <div class="col-md-3">
-                    <div class="stat-number" id="users-count">1,250</div>
+                    <div class="stat-number" id="users-count">0</div>
                     <p>Usuarios registrados</p>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-number" id="locations-count">87</div>
+                    <div class="stat-number" id="locations-count">0</div>
                     <p>Puntos de reciclaje</p>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-number" id="recycled-count">42.5</div>
+                    <div class="stat-number" id="recycled-count">0</div>
                     <p>Toneladas recicladas</p>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-number" id="co2-count">98</div>
+                    <div class="stat-number" id="co2-count">0</div>
                     <p>Ton CO₂ evitadas</p>
                 </div>
             </div>
@@ -336,23 +341,24 @@
                             <label class="form-label">Materiales aceptados</label>
                             <div class="d-flex flex-wrap gap-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="plasticCheck" value="plastic">
+                                    <input class="form-check-input" type="checkbox" id="plasticCheck" value="Plástico">
                                     <label class="form-check-label" for="plasticCheck">Plástico</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="paperCheck" value="paper">
+                                    <input class="form-check-input" type="checkbox" id="paperCheck" value="Papel">
                                     <label class="form-check-label" for="paperCheck">Papel</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="glassCheck" value="glass">
+                                    <input class="form-check-input" type="checkbox" id="glassCheck" value="Vidrio">
                                     <label class="form-check-label" for="glassCheck">Vidrio</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="metalCheck" value="metal">
+                                    <input class="form-check-input" type="checkbox" id="metalCheck" value="Metal">
                                     <label class="form-check-label" for="metalCheck">Metal</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="ewasteCheck" value="ewaste">
+                                    <input class="form-check-input" type="checkbox" id="ewasteCheck"
+                                        value="Electrónicos">
                                     <label class="form-check-label" for="ewasteCheck">Electrónicos</label>
                                 </div>
                             </div>
@@ -416,25 +422,24 @@
                 <div class="col-lg-3 col-md-6">
                     <h5 class="mb-3">Contacto</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> contacto@greenlink.cl</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> greenlink.cl@gmail.com</li>
                         <li class="mb-2"><i class="fas fa-phone me-2"></i> +56 9 1234 5678</li>
                         <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> San Ramón, Santiago</li>
                     </ul>
                 </div>
-            </div>
-            <hr class="my-4 bg-light">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="small mb-0">&copy; 2025 GreenLink. Todos los derechos reservados.</p>
+                <hr class="my-4 bg-light">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="small mb-0">&copy; 2025 GreenLink. Todos los derechos reservados.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="small mb-0">
+                            <a href="#" class="text-white text-decoration-none">Política de privacidad</a> |
+                            <a href="#" class="text-white text-decoration-none">Términos de servicio</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="small mb-0">
-                        <a href="#" class="text-white text-decoration-none">Política de privacidad</a> |
-                        <a href="#" class="text-white text-decoration-none">Términos de servicio</a>
-                    </p>
-                </div>
             </div>
-        </div>
     </footer>
 
     <!-- Bootstrap JS-->

@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateValue('users-count', 0, 1250, 2000);
+                animateValue('users-count', 0, 1256, 2000);
                 animateValue('locations-count', 0, 87, 1500);
                 animateValue('recycled-count', 0, 42.5, 2000);
                 animateValue('co2-count', 0, 98, 2000);

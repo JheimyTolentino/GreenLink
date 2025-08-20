@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,12 @@
     <!-- Leaflet CSS (Mapa) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <!-- Icon -->
-    <link rel="icon" href="images/illustration-sprout-plant-isolated-on-600nw-2512462357-removebg-preview.png" type="image/x-icon">
+    <link rel="icon" href="images/illustration-sprout-plant-isolated-on-600nw-2512462357-removebg-preview.png"
+        type="image/x-icon">
     <!-- Style CSS -->
-     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
@@ -53,14 +56,16 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h1 class="display-4 fw-bold mb-4">Encuentra puntos de reciclaje en San Ramón</h1>
-                    <p class="lead mb-4">Conectamos a la comunidad con los centros de reciclaje más cercanos para fomentar un entorno más limpio y sostenible.</p>
+                    <p class="lead mb-4">Conectamos a la comunidad con los centros de reciclaje más cercanos para
+                        fomentar un entorno más limpio y sostenible.</p>
                     <div class="d-flex gap-3">
                         <a href="#mapa" class="btn btn-light btn-lg">Ver Mapa</a>
                         <a href="#registro" class="btn btn-outline-light btn-lg">Registrar Punto</a>
                     </div>
                 </div>
                 <div class="col-lg-6 d-none d-lg-block">
-                    <img src="images/proceso-de-reciclaje-de-papel.jpg" alt="Reciclaje" class="img-fluid rounded shadow">
+                    <img src="images/proceso-de-reciclaje-de-papel.jpg" alt="Reciclaje"
+                        class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -144,7 +149,8 @@
                         <div class="list-group" id="nearby-locations">
                             <!-- Los puntos cercanos se cargarán dinámicamente -->
                         </div>
-                        <button class="btn btn-green w-100 mt-3" data-bs-toggle="modal" data-bs-target="#addLocationModal">
+                        <button class="btn btn-green w-100 mt-3" data-bs-toggle="modal"
+                            data-bs-target="#addLocationModal">
                             <i class="fas fa-plus me-2"></i>Agregar nuevo punto
                         </button>
                     </div>
@@ -185,7 +191,8 @@
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
-                        <span class="material-badge badge-plastic mb-3" style="font-size: 1.5rem; padding: 0.5rem 1rem;">
+                        <span class="material-badge badge-plastic mb-3"
+                            style="font-size: 1.5rem; padding: 0.5rem 1rem;">
                             <i class="fas fa-trash-alt me-2"></i>Plástico
                         </span>
                         <ul class="text-start ps-3">
@@ -252,7 +259,8 @@
                 <div class="card shadow">
                     <div class="card-body p-5">
                         <h2 class="text-center mb-4">Únete a GreenLink</h2>
-                        <p class="text-center mb-4">Regístrate para guardar tus puntos favoritos, agregar nuevos centros de reciclaje y recibir actualizaciones.</p>
+                        <p class="text-center mb-4">Regístrate para guardar tus puntos favoritos, agregar nuevos centros
+                            de reciclaje y recibir actualizaciones.</p>
                         <form id="registrationForm">
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -351,7 +359,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="locationHours" class="form-label">Horario de atención</label>
-                            <input type="text" class="form-control" id="locationHours" placeholder="Ej: Lunes a Viernes 9:00-18:00">
+                            <input type="text" class="form-control" id="locationHours"
+                                placeholder="Ej: Lunes a Viernes 9:00-18:00">
                         </div>
                         <div class="mb-3">
                             <label for="locationPhoto" class="form-label">Foto (opcional)</label>
@@ -375,7 +384,8 @@
                     <h5 class="mb-3">
                         <i class="fas fa-leaf me-2"></i>GreenLink
                     </h5>
-                    <p>Conectando a la comunidad con puntos de reciclaje en San Ramón y sus alrededores para un futuro más sostenible.</p>
+                    <p>Conectando a la comunidad con puntos de reciclaje en San Ramón y sus alrededores para un futuro
+                        más sostenible.</p>
                     <div class="d-flex gap-3">
                         <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
@@ -386,9 +396,12 @@
                     <h5 class="mb-3">Enlaces</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#mapa" class="text-white text-decoration-none">Mapa</a></li>
-                        <li class="mb-2"><a href="#como-funciona" class="text-white text-decoration-none">Cómo funciona</a></li>
-                        <li class="mb-2"><a href="#estadisticas" class="text-white text-decoration-none">Estadísticas</a></li>
-                        <li class="mb-2"><a href="#materiales" class="text-white text-decoration-none">Materiales</a></li>
+                        <li class="mb-2"><a href="#como-funciona" class="text-white text-decoration-none">Cómo
+                                funciona</a></li>
+                        <li class="mb-2"><a href="#estadisticas"
+                                class="text-white text-decoration-none">Estadísticas</a></li>
+                        <li class="mb-2"><a href="#materiales" class="text-white text-decoration-none">Materiales</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -416,7 +429,7 @@
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <p class="small mb-0">
-                        <a href="#" class="text-white text-decoration-none">Política de privacidad</a> | 
+                        <a href="#" class="text-white text-decoration-none">Política de privacidad</a> |
                         <a href="#" class="text-white text-decoration-none">Términos de servicio</a>
                     </p>
                 </div>
@@ -431,4 +444,5 @@
     <!-- JS -->
     <script src="js/script.js"></script>
 </body>
+
 </html>
